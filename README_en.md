@@ -82,7 +82,7 @@ Before running on cmd, you should add the directory where adb.exe located into t
 
    Ensure the phone and computer are on the same WiFi network, go to `Settings > Developer Options > Wireless Debugging` as shown:
 
-   ![Permission](OpenAutoGLM_GUI\Resources\screenshot-20251210-120630.png)
+   ![Permission](OpenAutoGLM_GUI/Resources/screenshot-20251210-120630.png)
 
    Use Standard ADB Commands on Computer
 

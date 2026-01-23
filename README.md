@@ -36,7 +36,7 @@ Open-AutoGLM_GUI 是一个基于 [Open-AutoGLM ](https://github.com/zai-org/Open
 
 **请仔细检查相关权限**
 
-![Permissions](OpenAutoGLM_GUI\Resources\screenshot-20251209-181423.png)
+![Permissions](OpenAutoGLM_GUI/Resources/screenshot-20251209-181423.png)
 
 ### 4. 安装 ADB Keyboard（仅 Android 设备必需，用于文本输入）
 
@@ -85,7 +85,7 @@ pip install -e .
 
    确保手机和电脑在同一 WiFi 网络下，进入 `设置 > 开发者选项 > 无线调试`，如下所示：
 
-   ![Permission](OpenAutoGLM_GUI\Resources\setting.png)
+   ![Permission](OpenAutoGLM_GUI/Resources/setting.png)
 
    在电脑上使用标准 ADB 命令：
 
