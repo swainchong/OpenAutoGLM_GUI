@@ -1,98 +1,135 @@
 # Open-AutoGLM_GUI
 
-## Project Introduce
+[Readme in English](README_en.md)
 
-Open-AutoGLM_GUI is a GUI based on [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM).  The instruction below is basically abstracted from Official Github repository that is necessary for this project. Visit [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM) to get more information about Open-AutoGLM.
+## 项目介绍
 
-## Environment Setup
+Open-AutoGLM_GUI 是一个基于 [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM) 的图形界面（GUI）。以下说明基本上是从官方 Github 仓库中摘取出一些本项目必要的内容。如需获取更多关于 Open-AutoGLM 的信息，请访问 [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM)
 
-### 1. Python Environment
+## 环境配置
 
-Python 3.10 or higher is recommended.
+### 1. Python 环境
 
-### 2. Device Debug Tools
+推荐使用 Python 3.10 或更高版本。
 
-Choose the appropriate tool based on your device type:
+### 2. 设备调试工具
 
-#### For Android Devices - Using ADB
+根据你的设备类型选择合适的工具：
 
-1. Download the official ADB [installation package](https://developer.android.com/tools/releases/platform-tools) and extract it to a custom path
-2. Configure environment variables
+#### Android 设备 - 使用 ADB
 
-#### For HarmonyOS Devices
+1. 下载官方 ADB [安装包](https://developer.android.com/tools/releases/platform-tools)，并解压到自定义路径
 
-Waiting for adaption
+2. 配置环境变量
 
-### 3. Android 7.0+ or HarmonyOS Device with `Developer Mode` and `USB Debugging` Enabled
+   将 adb.exe 所在的目录添加到 **`系统变量 > Path`**。打开环境变量的方法：`设置 > 系统 > 关于 > 高级系统设置 > 环境变量`
 
-1. Enable Developer Mode: The typical method is to find `Settings > About Phone > Build Number` and tap it rapidly about 10 times until a popup shows "Developer mode has been enabled." This may vary slightly between phones; search online for tutorials if you can't find it.
-2. Enable USB Debugging: After enabling Developer Mode, go to `Settings > Developer Options > USB Debugging` and enable it
-3. Some devices may require a restart after setting developer options for them to take effect. You can test by connecting your phone to your computer via USB cable and running `adb devices` to see if device information appears. If not, the connection has failed.
+#### HarmonyOS 设备
 
-**Please carefully check the relevant permissions**
+等待适配
 
-![Permissions](OpenAutoGLM_GUI/Resources/screenshot-20251210-120416.png)
+### 3. Android 7.0+ 或 HarmonyOS 设备，并启用 `开发者模式` 和 `USB 调试`
 
-### 4. Install ADB Keyboard (Required for Android Devices Only, for Text Input)
+1. 启用开发者模式：通常的方法是进入 `设置 > 关于手机 > 版本号`，连续点击大约 10 次，直到弹出“已启用开发者模式”的提示。不同手机可能略有差异，如果找不到可以自行搜索教程。
+2. 启用 USB 调试：启用开发者模式后，进入 `设置 > 开发者选项 > USB 调试` 并开启
+3. 某些设备在设置开发者选项后可能需要重启才能生效。你可以通过使用 USB 数据线将手机连接到电脑，并运行 `adb devices` 来测试是否成功。如果没有显示设备信息，则说明连接失败。
 
-If you are using an Android device:
+**请仔细检查相关权限**
 
-Download the [installation package](https://github.com/senzhk/ADBKeyBoard/blob/master/ADBKeyboard.apk) and install it on the corresponding Android device.
-Note: After installation, you need to enable `ADB Keyboard` in `Settings > Input Method` or `Settings > Keyboard List` for it to work.(or use command `adb shell ime enable com.android.adbkeyboard/.AdbIME`[How-to-use](https://github.com/senzhk/ADBKeyBoard/blob/master/README.md#how-to-use))
+![Permissions](OpenAutoGLM_GUI\Resources\screenshot-20251209-181423.png)
 
-## Deployment Preparation
+### 4. 安装 ADB Keyboard（仅 Android 设备必需，用于文本输入）
 
-### 1. Install Dependencies
+如果你使用的是 Android 设备：
 
-Download [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM), extract to a custom path.
+下载 [安装包](https://github.com/senzhk/ADBKeyBoard/blob/master/ADBKeyboard.apk) 并安装到对应的 Android 设备上。
+ 注意：安装完成后，需要在 `设置 > 输入法` 或 `设置 > 键盘列表` 中启用 `ADB Keyboard` 才能正常使用。（或者使用命令 `adb shell ime enable com.android.adbkeyboard/.AdbIME`，[使用方法](https://github.com/senzhk/ADBKeyBoard/blob/master/README.md#how-to-use)）
 
-```bash
+## 部署准备
+
+### 1. 安装依赖
+
+下载 [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM)，并解压到自定义路径。
+
+在main.py目录下打开cmd
+
+```
 pip install -r requirements.txt 
 pip install -e .
 ```
 
-### 2. Configure ADB or HDC
+### 2. 配置 ADB 或 HDC
 
-***Note: You can check whether adb.exe is working following the below steps, or you can just check in Auto-GLM GUI.exe*** 
+***注意：你可以按照以下步骤在 cmd 中检查 adb.exe 是否正常工作，或者直接在 Auto-GLM GUI.exe 中检查***
 
-Before running on cmd, you should add the directory where adb.exe located into the **`System Path`**: Setting > 
+#### Android 设备
 
-#### For Android Devices
+1. 通过 USB 数据线
 
-1. Via USB cable
+   确保你的 **USB 数据线支持数据传输**，而不是充电线。
 
-   Make sure your **USB cable supports data transfer**, not just charging.
+   确保已安装 ADB，并通过 **USB 数据线** 连接设备：
 
-   Ensure ADB is installed and connect the device via **USB cable**:
-
-   ```bash
-   # Check connected devices
+   ```
+   # 检查已连接的设备
    adb devices
    
-   # Output should show your device, e.g.:
+   # 输出应显示你的设备，例如：
    # List of devices attached
    # emulator-5554   device
    ```
 
-2. Via WiFi/network
+2. 通过 WiFi / 网络
 
-   You can also connect your devices via WiFi/network
+   你也可以通过 WiFi / 网络连接设备。
 
-   Ensure the phone and computer are on the same WiFi network, go to `Settings > Developer Options > Wireless Debugging` as shown:
+   确保手机和电脑在同一 WiFi 网络下，进入 `设置 > 开发者选项 > 无线调试`，如下所示：
 
-   ![Permission](OpenAutoGLM_GUI\Resources\screenshot-20251210-120630.png)
+   ![Permission](OpenAutoGLM_GUI\Resources\setting.png)
 
-   Use Standard ADB Commands on Computer
+   在电脑上使用标准 ADB 命令：
 
-   ```bash
-   # Android device - Connect via WiFi, replace with the IP address and port shown on your phone
+   ```
+   # Android 设备 - 通过 WiFi 连接，将 IP 地址和端口替换为手机上显示的内容
    adb connect 192.168.1.100:5555
    
-   # Verify connection
+   # 验证连接
    adb devices
-   # Should show: 192.168.1.100:5555    device
+   # 应显示：192.168.1.100:5555    device
    ```
 
+### 3. 启动模型服务
 
-### 3. Start Model Service
+你可以选择自行部署模型服务，或者使用第三方模型服务。
 
+#### 方案 A：使用第三方模型服务
+
+如果你不想自己部署模型，可以使用以下已经部署好模型的第三方服务：
+
+**1. 智谱 BigModel**
+
+- 文档：https://docs.bigmodel.cn/cn/api/introduction
+
+- OpenAutoGLM_GUI.exe 中要使用到的参数：
+
+  url: ` https://open.bigmodel.cn/api/paas/v4`
+
+  model: `autoglm-phone`
+
+  API Key：在智谱平台申请你的 API Key
+
+**2. ModelScope(魔搭社区)**
+
+- 文档：https://modelscope.cn/models/ZhipuAI/AutoGLM-Phone-9B
+
+  url: `https://api-inference.modelscope.cn/v1`
+
+  model: `ZhipuAI/AutoGLM-Phone-9B`
+
+  API Key：在 ModelScope 平台申请你的 API Key
+
+#### 方案 B：自行部署模型
+
+详细步骤请访问：[https://github.com/zai-org/Open-AutoGLM?tab=readme-ov-file#%E9%80%89%E9%A1%B9-b-%E8%87%AA%E8%A1%8C%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%9E%8B](https://github.com/zai-org/Open-AutoGLM?tab=readme-ov-file#选项-b-自行部署模型)
+
+如果你已经成功部署，只需要将 url 改为你自己的地址，例如 `http://localhost:8000/v1`，将 model 改为你的模型名称，并记得勾选 `useLocalModel`
