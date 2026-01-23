@@ -144,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\logo.ico" />
-    <Content Include="Resources\设置.ico" />
+    <Content Include="Resources\setting.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
