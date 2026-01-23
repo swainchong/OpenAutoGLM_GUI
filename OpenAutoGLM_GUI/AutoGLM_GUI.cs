@@ -30,16 +30,12 @@ namespace OpenAutoGLM_GUI
         bool state = true;
         string configPath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
         string adbPath;
+        bool flag = true;
 
         public AutoGLM_GUI()
         {
             InitializeComponent();
             ReadConfig();
-
-            var adbServerState = RunAdbServer();
-            connect.Enabled = adbServerState;
-            disconnect.Enabled = adbServerState;
-
 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.AcceptButton = send;
@@ -51,6 +47,9 @@ namespace OpenAutoGLM_GUI
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            var adbServerState = RunAdbServer();
+            connect.Enabled = adbServerState;
+            disconnect.Enabled = adbServerState;
             Test();
         }
         //Update Connected Devices
@@ -108,9 +107,19 @@ namespace OpenAutoGLM_GUI
         }
         private bool RunAdbServer()
         {
+            var dialogResult = DialogResult;
             if (!File.Exists(adbPath))
             {
-                MessageBox.Show($"ADB executable not found at { adbPath } ! Please install Android SDK Platform-Tools and set the correct path at setting then restart");
+                dialogResult = MessageBox.Show(
+                    $"ADB executable not found at { adbPath } ! \r\nDo you want to download now?\r\nClick \"No\" to choose an existing path in Setting",
+                    "Warning",
+                    MessageBoxButtons.YesNo
+                    );
+                if (dialogResult == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start("https://developer.android.com/studio/releases/platform-tools");
+                    Application.Exit();
+                }
                 return false;
             }
             AdbServer server = new AdbServer();
@@ -276,6 +285,56 @@ namespace OpenAutoGLM_GUI
             {
                 send.Icon = Properties.Resources.up;
             });
+        }
+
+        private void AutoGLM_GUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                MinimizeToTray();
+                e.Cancel = true;
+                return;
+            }
+            if (!state)
+            {
+                var result = MessageBox.Show("A process is running. Are you sure to exit?", "Warning", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    StopExec();
+                }
+            }   
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RestoreFromTray();
+        }
+        private void MinimizeToTray()
+        {
+            Hide();
+            //notifyIcon1.Visible = true;
+            if (flag) notifyIcon1.ShowBalloonTip(1000, "OpenAutoGLM_GUI", "Application minimized to tray.", ToolTipIcon.Info);
+            flag = false;
+        }
+        private void RestoreFromTray()
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            //notifyIcon1.Visible = false;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            RestoreFromTray();
         }
     }
 }

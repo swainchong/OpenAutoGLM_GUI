@@ -50,11 +50,13 @@
             this.adbPath = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.adbSite = new System.Windows.Forms.LinkLabel();
+            this.autoglmSite = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // Browse
             // 
-            this.Browse.Location = new System.Drawing.Point(377, 140);
+            this.Browse.Location = new System.Drawing.Point(377, 156);
             this.Browse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Browse.Name = "Browse";
             this.Browse.Size = new System.Drawing.Size(87, 34);
@@ -65,7 +67,7 @@
             // 
             // path
             // 
-            this.path.Location = new System.Drawing.Point(99, 140);
+            this.path.Location = new System.Drawing.Point(99, 156);
             this.path.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.path.Multiline = true;
             this.path.Name = "path";
@@ -75,7 +77,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 111);
+            this.label1.Location = new System.Drawing.Point(95, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 24);
             this.label1.TabIndex = 2;
@@ -87,7 +89,7 @@
             this.label2.BackColor = System.Drawing.SystemColors.Control;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(96, 179);
+            this.label2.Location = new System.Drawing.Point(96, 195);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(376, 20);
             this.label2.TabIndex = 3;
@@ -259,11 +261,37 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "choose where adb.exe is located";
             // 
+            // adbSite
+            // 
+            this.adbSite.AutoSize = true;
+            this.adbSite.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.adbSite.Location = new System.Drawing.Point(355, 81);
+            this.adbSite.Name = "adbSite";
+            this.adbSite.Size = new System.Drawing.Size(89, 20);
+            this.adbSite.TabIndex = 5;
+            this.adbSite.TabStop = true;
+            this.adbSite.Text = "Official site";
+            this.adbSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.adbSite_LinkClicked);
+            // 
+            // autoglmSite
+            // 
+            this.autoglmSite.AutoSize = true;
+            this.autoglmSite.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.autoglmSite.Location = new System.Drawing.Point(473, 195);
+            this.autoglmSite.Name = "autoglmSite";
+            this.autoglmSite.Size = new System.Drawing.Size(58, 20);
+            this.autoglmSite.TabIndex = 5;
+            this.autoglmSite.TabStop = true;
+            this.autoglmSite.Text = "Github";
+            this.autoglmSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.adbSite_LinkClicked);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 603);
+            this.Controls.Add(this.autoglmSite);
+            this.Controls.Add(this.adbSite);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
             this.Controls.Add(this.label7);
@@ -313,5 +341,7 @@
         private System.Windows.Forms.TextBox adbPath;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.LinkLabel adbSite;
+        private System.Windows.Forms.LinkLabel autoglmSite;
     }
 }

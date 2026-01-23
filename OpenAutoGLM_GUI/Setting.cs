@@ -1,6 +1,7 @@
 ﻿using SB.Helper;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -15,6 +16,8 @@ namespace OpenAutoGLM_GUI
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            adbSite.Links[0].LinkData = "https://developer.android.com/studio/releases/platform-tools";
+            autoglmSite.Links[0].LinkData = "https://github.com/zai-org/Open-AutoGLM";
             ReadConfig();
         }
         private void ReadConfig()
@@ -63,7 +66,7 @@ namespace OpenAutoGLM_GUI
             }
             finally
             {
-                
+                Close();
             }
         }
 
@@ -78,6 +81,17 @@ namespace OpenAutoGLM_GUI
             {
                 adbPath.Text = openFileDialog1.FileName;
             }
+        }
+
+        private void adbSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string url = e.Link.LinkData.ToString();
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            });
         }
     }
 }

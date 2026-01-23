@@ -46,29 +46,34 @@
             this.useSelect = new AntdUI.Checkbox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.splitter1 = new AntdUI.Splitter();
-            this.splitter2 = new AntdUI.Splitter();
             this.splitter3 = new AntdUI.Splitter();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitter2 = new AntdUI.Splitter();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitter1)).BeginInit();
             this.splitter1.Panel1.SuspendLayout();
             this.splitter1.Panel2.SuspendLayout();
             this.splitter1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitter2)).BeginInit();
-            this.splitter2.Panel1.SuspendLayout();
-            this.splitter2.Panel2.SuspendLayout();
-            this.splitter2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitter3)).BeginInit();
             this.splitter3.Panel1.SuspendLayout();
             this.splitter3.Panel2.SuspendLayout();
             this.splitter3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitter2)).BeginInit();
+            this.splitter2.Panel1.SuspendLayout();
+            this.splitter2.Panel2.SuspendLayout();
+            this.splitter2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // devicesList
@@ -253,25 +258,6 @@
             this.splitter1.SplitterDistance = 369;
             this.splitter1.TabIndex = 14;
             // 
-            // splitter2
-            // 
-            this.splitter2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.splitter2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitter2.Location = new System.Drawing.Point(0, 0);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitter2.Panel1
-            // 
-            this.splitter2.Panel1.Controls.Add(this.chatList1);
-            // 
-            // splitter2.Panel2
-            // 
-            this.splitter2.Panel2.Controls.Add(this.tableLayoutPanel3);
-            this.splitter2.Size = new System.Drawing.Size(809, 748);
-            this.splitter2.SplitterDistance = 525;
-            this.splitter2.TabIndex = 0;
-            // 
             // splitter3
             // 
             this.splitter3.Cursor = System.Windows.Forms.Cursors.Default;
@@ -328,6 +314,25 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(369, 624);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // splitter2
+            // 
+            this.splitter2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.splitter2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitter2.Location = new System.Drawing.Point(0, 0);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitter2.Panel1
+            // 
+            this.splitter2.Panel1.Controls.Add(this.chatList1);
+            // 
+            // splitter2.Panel2
+            // 
+            this.splitter2.Panel2.Controls.Add(this.tableLayoutPanel3);
+            this.splitter2.Size = new System.Drawing.Size(809, 748);
+            this.splitter2.SplitterDistance = 525;
+            this.splitter2.TabIndex = 0;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -353,6 +358,37 @@
             this.panel1.Size = new System.Drawing.Size(803, 170);
             this.panel1.TabIndex = 15;
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Icon = global::OpenAutoGLM_GUI.Properties.Resources.logo;
+            this.notifyIcon1.Text = "AutoGLM GUI";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // AutoGLM_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -366,6 +402,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AutoGLM_GUI";
             this.Text = "AutoGLM GUI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AutoGLM_GUI_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -373,10 +410,6 @@
             this.splitter1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitter1)).EndInit();
             this.splitter1.ResumeLayout(false);
-            this.splitter2.Panel1.ResumeLayout(false);
-            this.splitter2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitter2)).EndInit();
-            this.splitter2.ResumeLayout(false);
             this.splitter3.Panel1.ResumeLayout(false);
             this.splitter3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitter3)).EndInit();
@@ -385,8 +418,13 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.splitter2.Panel1.ResumeLayout(false);
+            this.splitter2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitter2)).EndInit();
+            this.splitter2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,6 +454,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 
