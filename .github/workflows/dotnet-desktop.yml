@@ -61,7 +61,8 @@ jobs:
     # 编译 .NET Framework 项目
     - name: Build
       run: |
-        msbuild OpenAutoGLM_GUI.slnx ^
-          /p:Configuration=Release ^
-          /p:Platform="Any CPU" ^
-          /m
+        msbuild OpenAutoGLM_GUI.slnx `
+        /p:Configuration=Release `
+        /p:Platform="Any CPU" `
+        /m `
+        /v:m
