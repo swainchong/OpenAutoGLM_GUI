@@ -57,6 +57,9 @@ jobs:
     # （可选）显示 MSBuild 版本，方便排错
     - name: MSBuild version
       run: msbuild -version
+    #  还原第三方库
+    - name: Restore NuGet packages
+      run: nuget restore OpenAutoGLM_GUI.slnx
 
     # 编译 .NET Framework 项目
     - name: Build
