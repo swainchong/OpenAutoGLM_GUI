@@ -142,5 +142,9 @@
   <ItemGroup>
     <None Include="Resources\stop.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\logo.ico" />
+    <Content Include="Resources\设置.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
