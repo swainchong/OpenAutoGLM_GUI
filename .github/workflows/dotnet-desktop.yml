@@ -69,3 +69,12 @@ jobs:
         /p:Platform="Any CPU" `
         /m `
         /v:m
+    #  上传exe
+    - name: Upload EXE
+      uses: actions/upload-artifact@v4
+      with:
+        name: OpenAutoGLM_GUI
+        path: |
+          **/bin/Release/*.exe
+          **/bin/Release/*.dll
+
