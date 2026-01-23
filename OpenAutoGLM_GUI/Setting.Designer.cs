@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
             this.Browse = new System.Windows.Forms.Button();
             this.path = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -146,6 +147,7 @@
             this.api_key.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.api_key.Multiline = true;
             this.api_key.Name = "api_key";
+            this.api_key.PasswordChar = '*';
             this.api_key.Size = new System.Drawing.Size(365, 58);
             this.api_key.TabIndex = 1;
             // 
@@ -281,6 +283,7 @@
             this.Controls.Add(this.browse2);
             this.Controls.Add(this.Browse);
             this.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Setting";
             this.Text = "Setting";

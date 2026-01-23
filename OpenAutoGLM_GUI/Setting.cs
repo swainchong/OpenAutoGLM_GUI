@@ -12,6 +12,9 @@ namespace OpenAutoGLM_GUI
         public Setting()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             ReadConfig();
         }
         private void ReadConfig()
