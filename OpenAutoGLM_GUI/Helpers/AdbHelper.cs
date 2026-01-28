@@ -1,9 +1,10 @@
 using SharpAdbClient;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Net;
 
 namespace OpenAutoGLM_GUI.Helpers
 {
@@ -45,5 +46,88 @@ namespace OpenAutoGLM_GUI.Helpers
             log?.Invoke($"failed to connect {dnsEndPoint.Host}:{dnsEndPoint.Port}, check if device is reachable");
             return false;
         }
+        public class DeviceStateChangedEventArgs : EventArgs
+        {
+            public DeviceData Device { get; }
+            public DeviceState OldState { get; }
+            public DeviceState NewState { get; }
+
+            public DeviceStateChangedEventArgs(DeviceData device, DeviceState oldState, DeviceState newState)
+            {
+                Device = device;
+                OldState = oldState;
+                NewState = newState;
+            }
+        }
+        public class DeviceStateWatcher : IDisposable
+        {
+            private readonly Dictionary<string, DeviceState> _lastStates = new Dictionary<string, DeviceState>();
+            private readonly CancellationTokenSource _cts = new CancellationTokenSource();
+            private readonly AdbClient _adb = new AdbClient();
+
+            public event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged;
+
+            public void Start()
+            {
+                Task.Run(PollLoop);
+            }
+
+            private async Task PollLoop()
+            {
+                while (!_cts.IsCancellationRequested)
+                {
+                    List<DeviceData> devices;
+
+                    try
+                    {
+                        devices = _adb.GetDevices();
+                    }
+                    catch
+                    {
+                        await Task.Delay(300);
+                        continue;
+                    }
+
+                    foreach (var device in devices)
+                    {
+                        if (_lastStates.TryGetValue(device.Serial, out var last))
+                        {
+                            if (last != device.State)
+                            {
+                                _lastStates[device.Serial] = device.State;
+                                DeviceStateChanged?.Invoke(
+                                    this,
+                                    new DeviceStateChangedEventArgs(device, last, device.State)
+                                );
+                            }
+                        }
+                        else
+                        {
+                            _lastStates[device.Serial] = device.State;
+                            DeviceStateChanged?.Invoke(
+                                this,
+                                new DeviceStateChangedEventArgs(device, DeviceState.Unknown, device.State)
+                            );
+                        }
+                    }
+
+                    // 处理被移除的设备
+                    var currentSerials = devices.Select(d => d.Serial).ToHashSet();
+                    foreach (var removed in _lastStates.Keys.Except(currentSerials).ToList())
+                    {
+                        var old = _lastStates[removed];
+                        _lastStates.Remove(removed);
+                    }
+
+                    await Task.Delay(300);
+                }
+            }
+
+            public void Dispose()
+            {
+                _cts.Cancel();
+            }
+        }
+
     }
 }

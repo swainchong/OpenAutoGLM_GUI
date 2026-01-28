@@ -9,11 +9,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text;
+using static OpenAutoGLM_GUI.Helpers.AdbHelper;
 
 namespace OpenAutoGLM_GUI
 {
@@ -33,6 +34,8 @@ namespace OpenAutoGLM_GUI
         ProcessExec _processExec = new ProcessExec();
         DnsEndPoint dnsEndPoint;
         AntdUI.Chat.TextChatItem aiItem = new AntdUI.Chat.TextChatItem("") { Me = false };
+        DeviceMonitor monitor = new DeviceMonitor(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
+        DeviceStateWatcher watcher = new DeviceStateWatcher();
 
         requestPara _requestPara;
         List<DeviceData> devices;
@@ -63,7 +66,7 @@ namespace OpenAutoGLM_GUI
             var adbServerState = RunAdbServer();
             connect.Enabled = adbServerState;
             disconnect.Enabled = adbServerState;
-            Test();
+            startMonitor();
         }
         #endregion
 
@@ -234,6 +237,8 @@ namespace OpenAutoGLM_GUI
             // Cleanup CTS on exit
             try
             {
+                monitor?.Dispose();
+                watcher?.Dispose();
                 cts?.Cancel();
             }
             catch { /* ignore */ }
@@ -246,7 +251,11 @@ namespace OpenAutoGLM_GUI
         // Update Connected Devices
         private void UpdateDevices()
         {
-            RunOnUI(() => devicesList.Items.Clear());
+            RunOnUI(() =>
+            {
+                devicesList.Items.Clear();
+                devicesList.SelectedIndex = -1;
+            });
             devices = _adbClient.GetDevices();
             foreach (var device in devices)
             {
@@ -272,11 +281,21 @@ namespace OpenAutoGLM_GUI
         }
 
         // Add to log when device is disconnected
-        private void DeviceDisconnected(object sender, DeviceDataEventArgs e)
+        private void OnDeviceDisconnected(object sender, DeviceDataEventArgs e)
         {
             RunOnUI(() => AddAdbRep($"The device {e.Device.Serial} has disconnected"));
             UpdateDevices();
         }
+
+        private void OnDeviceStateChanged(object sender, DeviceStateChangedEventArgs e)
+        {
+            RunOnUI(() => AddAdbRep($"Device {e.Device.Serial} state has changed: {e.OldState} -> {e.NewState}"));
+            if (e.NewState == DeviceState.Online)
+            {
+                UpdateDevices();
+            }
+        }
+
 
         private bool RunAdbServer()
         {
@@ -301,12 +320,15 @@ namespace OpenAutoGLM_GUI
         }
 
         // Start monitoring Devices
-        private void Test()
+        private void startMonitor()
         {
-            var monitor = new DeviceMonitor(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
+            
             monitor.DeviceConnected += this.OnDeviceConnected;
-            monitor.DeviceDisconnected += this.DeviceDisconnected;
+            monitor.DeviceDisconnected += this.OnDeviceDisconnected;
+            watcher.DeviceStateChanged += this.OnDeviceStateChanged;
+
             monitor.Start();
+            watcher.Start();
         }
         #endregion
 
