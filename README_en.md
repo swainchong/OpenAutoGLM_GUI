@@ -4,7 +4,7 @@
 
 ## Project Introduce
 
-Open-AutoGLM_GUI is a GUI based on [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM).  The instruction below is basically abstracted from Official Github repository that is necessary for this project. Visit [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM) to get more information about Open-AutoGLM.
+Open-AutoGLM_GUI is a GUI based on [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM).  The instruction below is basically abstracted from Official GitHub repository that is necessary for this project. Visit [Open-AutoGLM ](https://github.com/zai-org/Open-AutoGLM) to get more information about Open-AutoGLM.
 
 ## Environment Setup
 
@@ -128,6 +128,69 @@ If you don't want to deploy the model yourself, you can use the following third-
 
 #### Option B: Deploy Model Yourself
 
-For detailed step, visit https://github.com/zai-org/Open-AutoGLM?tab=readme-ov-file#%E9%80%89%E9%A1%B9-b-%E8%87%AA%E8%A1%8C%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%9E%8B
+For detailed step, visit [Open-AutoGLM--Step: deploy-model-yourself](https://github.com/zai-org/Open-AutoGLM/blob/main/README_en.md#option-b-deploy-model-yourself)
 
-If you have deployed successfully, just change the url to your own, should be like `http://localhost:8000/v1`, change the model to your served model name and remember checked the `useLocalModel`
+If you have deployed successfully, just change the url to your own, should be like `http://localhost:8000/v1`, change the model to your served model name
+
+## How to build exe from GitHub Actions
+
+if you don't have any development environment, you can use GitHub to build exe
+
+1. Sign in GitHub
+
+2. Create Repository
+
+3. Upload source code
+
+   - Click "+" on the upper right corner > "New repository"
+   - Repository name: `OpenAutoGLM_GUI`
+   - Choose visibility: Private or Public
+   - Click "Create repository"
+
+4. Upload Open-AutoGLM_GUI to your repository
+
+   First Download Open-AutoGLM_GUI to your PC
+
+   Option A: Use Git Command Line
+
+   ```
+   # 1. switch directory
+   cd Open-AutoGLM_GUI
+   
+   # 2. Start a new repo
+   git init
+   
+   # 3. Add all untracked files and unstaged changes
+   git add .
+   
+   # 4. Make a commit
+   git commit -m "Initial commit"
+   
+   # 5. Add a Remote（replace your github username)
+   git remote add origin https://github.com/YOUR_USERNAME/Open-AutoGLM_GUI.git
+   
+   # 6. Push the main branch to the remote
+   git branch -M main
+   git push -u origin main
+   ```
+
+   Option B: Upload on GitHub Website
+
+   1. Click "uploading an existing file" on your repository you just created
+   2. Drag  files to the webpage
+   3. Click "Commit changes"
+
+5. Waiting for GitHub Build
+
+   Click "Actions" on repository, you should see a work flow named "build-dotnet-framework" is running, wait until it done
+
+6. Download EXE
+
+   When the workflow is done, click "build", you will see a few steps on the right, unfold "Upload EXE", you'll see "Artifact download URL:", click the url and it'll download "OpenAutoGLM_GUI.zip" automatically, unzip to get "OpenAutoGLM_GUI.exe"
+
+## Acknowledgements
+
+- [Open-AutoGLM](https://github.com/zai-org/Open-AutoGLM) : Core repository
+- [SharpADBClient](https://github.com/quamotion/madb) : Communicate with Android devices.
+- [AntdUI](https://github.com/AntdUI/AntdUI) & [Materialskin2](https://github.com/leocb/MaterialSkin) : UI
+

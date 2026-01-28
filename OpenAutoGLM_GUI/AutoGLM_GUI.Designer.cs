@@ -56,6 +56,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitter1)).BeginInit();
             this.splitter1.Panel1.SuspendLayout();
@@ -74,6 +75,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // devicesList
@@ -181,7 +183,7 @@
             this.adbResp.AutoScroll = true;
             this.adbResp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
             this.adbResp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.adbResp.Location = new System.Drawing.Point(3, 76);
+            this.adbResp.Location = new System.Drawing.Point(0, 0);
             this.adbResp.Multiline = true;
             this.adbResp.Name = "adbResp";
             this.adbResp.ReadOnly = true;
@@ -256,6 +258,7 @@
             this.splitter1.Panel2.Controls.Add(this.splitter2);
             this.splitter1.Size = new System.Drawing.Size(1182, 748);
             this.splitter1.SplitterDistance = 369;
+            this.splitter1.SplitterSize = 0;
             this.splitter1.TabIndex = 14;
             // 
             // splitter3
@@ -275,6 +278,7 @@
             this.splitter3.Panel2.Controls.Add(this.tableLayoutPanel2);
             this.splitter3.Size = new System.Drawing.Size(369, 748);
             this.splitter3.SplitterDistance = 120;
+            this.splitter3.SplitterSize = 0;
             this.splitter3.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -301,7 +305,7 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.adbResp, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.devicesList, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -331,6 +335,7 @@
             this.splitter2.Panel2.Controls.Add(this.tableLayoutPanel3);
             this.splitter2.Size = new System.Drawing.Size(809, 748);
             this.splitter2.SplitterDistance = 525;
+            this.splitter2.SplitterSize = 0;
             this.splitter2.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -373,21 +378,30 @@
             this.showToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(115, 52);
             // 
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
             this.showToolStripMenuItem.Text = "Show";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.adbResp);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 76);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(363, 545);
+            this.panel2.TabIndex = 13;
             // 
             // AutoGLM_GUI
             // 
@@ -425,6 +439,7 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,6 +473,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

@@ -112,9 +112,9 @@ pip install -e .
 
 - OpenAutoGLM_GUI.exe 中要使用到的参数：
 
-  url: ` https://open.bigmodel.cn/api/paas/v4`
+  url: **` https://open.bigmodel.cn/api/paas/v4`**
 
-  model: `autoglm-phone`
+  model: **`autoglm-phone`**
 
   API Key：在智谱平台申请你的 API Key
 
@@ -122,14 +122,76 @@ pip install -e .
 
 - 文档：https://modelscope.cn/models/ZhipuAI/AutoGLM-Phone-9B
 
-  url: `https://api-inference.modelscope.cn/v1`
+  url: **`https://api-inference.modelscope.cn/v1`**
 
-  model: `ZhipuAI/AutoGLM-Phone-9B`
+  model: **`ZhipuAI/AutoGLM-Phone-9B`**
 
   API Key：在 ModelScope 平台申请你的 API Key
 
 #### 方案 B：自行部署模型
 
-详细步骤请访问：[https://github.com/zai-org/Open-AutoGLM?tab=readme-ov-file#%E9%80%89%E9%A1%B9-b-%E8%87%AA%E8%A1%8C%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%9E%8B](https://github.com/zai-org/Open-AutoGLM?tab=readme-ov-file#选项-b-自行部署模型)
+详细步骤请访问：[Open-AutoGLM 官方仓库-自行部署模型步骤](https://github.com/zai-org/Open-AutoGLM?tab=readme-ov-file#选项-b-自行部署模型)
 
-如果你已经成功部署，只需要将 url 改为你自己的地址，例如 `http://localhost:8000/v1`，将 model 改为你的模型名称，并记得勾选 `useLocalModel`
+如果你已经成功部署，只需要将 url 改为你自己的地址，例如 `http://localhost:8000/v1`，将 model 改为你的模型名称
+
+## 如何使用 GitHub Actions 构建 exe
+
+如果你本地没有任何开发环境，可以使用 GitHub 来构建 exe
+
+1. 登录 GitHub
+
+2. 创建仓库
+
+3. 上传源代码
+
+   - 点击右上角 “+” > “New repository”
+   - Repository name (仓库名称)：`OpenAutoGLM_GUI`
+   - Choose visibility (可见性)：Private 或 Public均可
+   - 点击 “Create repository”
+
+4. 将 Open-AutoGLM_GUI 上传到你的仓库
+
+   首先将 Open-AutoGLM_GUI 下载到你的电脑
+
+   方案 A：使用 Git 命令行
+
+   ```
+   # 1. 切换目录
+   cd Open-AutoGLM_GUI
+   
+   # 2. 初始化仓库
+   git init
+   
+   # 3. 添加所有文件
+   git add .
+   
+   # 4. 提交
+   git commit -m "Initial commit"
+   
+   # 5. 添加远程仓库（替换为你的 GitHub 用户名）
+   git remote add origin https://github.com/YOUR_USERNAME/Open-AutoGLM_GUI.git
+   
+   # 6. 推送 main 分支到远程仓库
+   git branch -M main
+   git push -u origin main
+   ```
+
+   方案 B：通过 GitHub 网页上传
+
+   1. 在刚创建的仓库中点击 “uploading an existing file”
+   2. 将文件拖拽到网页中
+   3. 点击 “Commit changes”
+
+5. 等待 GitHub 构建
+
+   在仓库中点击 “Actions”，可以看到一个名为 “build-dotnet-framework” 的工作流正在运行，等待完成即可
+
+6. 下载 EXE
+
+   当工作流完成后，点击 “build”，在右侧你会看到多个步骤，展开 “Upload EXE”，可以看到 “Artifact download URL:”，点击下方链接会自动下载 “OpenAutoGLM_GUI.zip”，解压即可得到 “OpenAutoGLM_GUI.exe”
+
+## 致谢
+
+- [Open-AutoGLM](https://github.com/zai-org/Open-AutoGLM) ：核心仓库
+- [SharpADBClient](https://github.com/quamotion/madb) ：用于与 Android 设备通信
+- [AntdUI](https://github.com/AntdUI/AntdUI) & [Materialskin2](https://github.com/leocb/MaterialSkin) ：UI 组件
