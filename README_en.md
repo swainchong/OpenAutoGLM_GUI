@@ -182,11 +182,27 @@ if you don't have any development environment, you can use GitHub to build exe
 
 5. Waiting for GitHub Build
 
-   Click "Actions" on repository, you should see a work flow named "build-dotnet-framework" is running, wait until it done
+   Click "Actions" on repository, you should see a work flow named "build exe" is running, wait until it done
 
 6. Download EXE
 
-   When the workflow is done, click "build", you will see a few steps on the right, unfold "Upload EXE", you'll see "Artifact download URL:", click the url and it'll download "OpenAutoGLM_GUI.zip" automatically, unzip to get "OpenAutoGLM_GUI.exe"
+   When the workflow is done, click "build", you will see "**Artifacts**" on the bottom of right, click download button and it'll download "OpenAutoGLM_GUI.zip" automatically, unzip to get "OpenAutoGLM_GUI.exe"
+
+## Tutorial
+
+Setup the Parameters correctly in Setting
+
+![Permission](OpenAutoGLM_GUI/Resources/QQ截图20260128152745.png)
+
+Input IP&Port on the left, make sure IP is reachable, click connect. It can automatically detect devices when using USB cable (make sure you have allowed USB debugging)
+
+When Multiple devices are connected, check **`Use selected device`** to designate the device you select on **`connectedDevices`**, single device no need to check
+
+![Permission](OpenAutoGLM_GUI/Resources/QQ截图20260128135645.png)
+
+Input the command on the bottom of right, press `enter` to execute, you can break at anytime when generating
+
+![Permission](OpenAutoGLM_GUI/Resources/QQ截图20260128134821.png)
 
 ## Acknowledgements
 

@@ -62,6 +62,8 @@ pip install -e .
 
 ***注意：你可以按照以下步骤在 cmd 中检查 adb.exe 是否正常工作，或者直接在 Auto-GLM GUI.exe 中检查***
 
+![Permission](OpenAutoGLM_GUI/Resources/QQ截图20260128134750.png)
+
 #### Android 设备
 
 1. 通过 USB 数据线
@@ -184,11 +186,27 @@ pip install -e .
 
 5. 等待 GitHub 构建
 
-   在仓库中点击 “Actions”，可以看到一个名为 “build-dotnet-framework” 的工作流正在运行，等待完成即可
+   在仓库中点击 “Actions”，可以看到一个名为 “build exe” 的工作流正在运行，等待完成即可
 
 6. 下载 EXE
 
-   当工作流完成后，点击 “build”，在右侧你会看到多个步骤，展开 “Upload EXE”，可以看到 “Artifact download URL:”，点击下方链接会自动下载 “OpenAutoGLM_GUI.zip”，解压即可得到 “OpenAutoGLM_GUI.exe”
+   当工作流完成后，点击 “build”，在右侧下方可以看到Artifacts有个OpenAutoGLM_GUI，在右侧点击下载按钮，下载完成后解压即可
+
+## 使用方法
+
+请先在Setting填写正确的参数
+
+![Permission](OpenAutoGLM_GUI/Resources/QQ截图20260128140257.png)
+
+在左侧输入要连接的设备IP和端口，确保IP有效，点击Connect；有线连接无需点击Connect，连接到PC自动检测 (确保设备已打开USB调试并信任PC)
+
+多个设备连接时，指定设备执行请勾选**`Use selected device`**，单个设备可不勾选
+
+![Permission](OpenAutoGLM_GUI/Resources/QQ截图20260128135645.png)
+
+连接成功在右侧聊天框输入要执行的操作，回车即可，执行过程可随时手动停止
+
+![Permission](OpenAutoGLM_GUI/Resources/QQ截图20260128134821.png)
 
 ## 致谢
 
